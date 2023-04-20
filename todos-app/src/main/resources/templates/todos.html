@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
     <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0" name="viewport" />
 
-    <title>Codes of Ph4nToM - Todos Application</title>
+    <title>Todos App</title>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css" />
     <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
@@ -22,7 +22,7 @@
 
 <body>
 
-    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="~{fragments/header :: header}"></div>
 
     <div class="container-fluid" style="max-width: 900px; margin: 0 auto;">
 
@@ -53,6 +53,8 @@
                         <div class="search">
 
                             <i class="fa fa-search"></i>
+
+                            <!--<label for="keyword"></label>-->
 
                             <input class="form-control" id="keyword"
                                    name="keyword" placeholder="Enter keyword"
@@ -94,6 +96,7 @@
                     <tr th:each="todo : ${todos}">
 
                         <th scope="row">[[${todo.id}]]</th>
+
                         <td>[[${todo.title}]]</td>
                         <td>[[${todo.description}]]</td>
                         <td>[[${todo.priority}]]</td>
@@ -163,7 +166,7 @@
 
     </div>
 
-    <div th:replace="fragments/footer :: footer"></div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
 
     <script type="text/javascript">
 

@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+@Controller
 public class TodoController {
 
   private final TodoRepository todoRepository;
@@ -22,7 +24,7 @@ public class TodoController {
   }
 
   @GetMapping("/todos")
-  public String getAll(final Model model, final @Param("keyword") String keyword) {
+  public String getTodos(final Model model, final @Param("keyword") String keyword) {
 
     try {
 
@@ -87,7 +89,7 @@ public class TodoController {
 
       final Todo todo = todoRepository.findById(id).get();
 
-      model.addAttribute("tutorial", todo);
+      model.addAttribute("todo", todo);
       model.addAttribute("pageTitle", "Edit Todo (ID: " + id + ")");
 
       return "todo_form";

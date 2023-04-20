@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
     <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0" name="viewport" />
 
-    <title>Codes of Ph4nToM - Todos Application</title>
+    <title>Todos App</title>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css" />
     <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
@@ -18,7 +18,7 @@
 
 <body>
 
-    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="~{fragments/header :: header}"></div>
 
     <div class="container-fluid">
 
@@ -79,7 +79,7 @@
                                for="done">Done</label>
 
                         <div class="col-sm-9">
-                            <input th:field="*{done}" type="checkbox" />
+                            <input th:field="*{done}" id="done" type="checkbox" />
                         </div>
 
                     </div>
@@ -101,7 +101,7 @@
 
     </div>
 
-    <div th:replace="fragments/footer :: footer"></div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
 
     <script type="text/javascript">
 
