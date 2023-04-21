@@ -1,16 +1,22 @@
 package com.ph4ntom.of.codes.todosapp.controller;
 
-import com.ph4ntom.of.codes.todosapp.entity.Todo;
+import com.ph4ntom.of.codes.todosapp.model.Todo;
 import com.ph4ntom.of.codes.todosapp.repository.TodoRepository;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -24,24 +30,43 @@ public class TodoController {
   }
 
   @GetMapping("/todos")
-  public String getTodos(final Model model, final @Param("keyword") String keyword) {
-
+  public String getTodos(final Model model, final @Param("keyword") String keyword,
+                         final @RequestParam(defaultValue = "1") int page,
+                         final @RequestParam(defaultValue = "6") int size,
+                         final @RequestParam(defaultValue = "id,asc") String[] sort) {
     try {
 
-      final List<Todo> todos = new ArrayList<>();
+      final Page<Todo> pageTodos;
+
+      final String sortField = sort[0];
+      final String sortDirection = sort[1];
+
+      final Direction direction = sortDirection.equals("desc") ? Direction.DESC : Direction.ASC;
+      final Order order = new Order(direction, sortField);
+
+      final Pageable pageable = PageRequest.of(page - 1, size, Sort.by(order));
 
       if (Objects.isNull(keyword)) {
 
-        todos.addAll(todoRepository.findAll());
+        pageTodos = todoRepository.findAll(pageable);
 
       } else {
 
-        todos.addAll(todoRepository.findByTitleContainingIgnoreCase(keyword));
+        pageTodos = todoRepository.findByTitleContainingIgnoreCase(keyword, pageable);
 
         model.addAttribute("keyword", keyword);
       }
 
-      model.addAttribute("todos", todos);
+      model.addAttribute("pageSize", size);
+      model.addAttribute("todos", pageTodos.getContent());
+
+      model.addAttribute("totalItems", pageTodos.getTotalElements());
+      model.addAttribute("currentPage", pageTodos.getNumber() + 1);
+      model.addAttribute("totalPages", pageTodos.getTotalPages());
+
+      model.addAttribute("sortField", sortField);
+      model.addAttribute("sortDirection", sortDirection);
+      model.addAttribute("reverseSortDirection", sortDirection.equals("asc") ? "desc" : "asc");
 
     } catch (final Exception exc) {
 
