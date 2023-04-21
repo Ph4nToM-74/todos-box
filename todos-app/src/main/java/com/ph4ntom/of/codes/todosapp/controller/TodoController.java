@@ -56,8 +56,6 @@ public class TodoController {
 
     final Todo todo = new Todo();
 
-    // todo.setDone(true);
-
     model.addAttribute("todo", todo);
     model.addAttribute("pageTitle", "Create new Todo");
 
