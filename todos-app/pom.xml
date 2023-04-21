@@ -9,7 +9,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.5</version>
+        <version>3.0.6</version>
         <relativePath/>
     </parent>
 
@@ -17,14 +17,15 @@
     <artifactId>todos-app</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>todos-app</name>
-    <description>todos-app</description>
+    <name>Todos Application</name>
+    <description>Manage your Todos!</description>
 
     <properties>
         <java.version>17</java.version>
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -37,11 +38,49 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <!--<version>5.2.3</version>-->
+            <version>4.6.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.6.4</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars/webjars-locator-core -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>webjars-locator-core</artifactId>
+            <version>0.52</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.0.33</version>
+            <scope>runtime</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>
