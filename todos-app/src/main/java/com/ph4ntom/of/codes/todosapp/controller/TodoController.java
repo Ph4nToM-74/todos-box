@@ -69,7 +69,9 @@ public class TodoController {
 
       todoRepository.save(todo);
 
-      redirectAttrs.addFlashAttribute("message", "The Todo has been saved.");
+      final String message = "The Todo has been saved.";
+
+      redirectAttrs.addFlashAttribute("message", message);
 
     } catch (final Exception exc) {
 
