@@ -17,11 +17,11 @@ RUN mvn package -DskipTests
 
 FROM eclipse-temurin:17-jre-alpine AS runner
 
-LABEL version="1.0.0"
+LABEL version="1.1.0"
 LABEL author="Ph4nToM"
 LABEL maintainer="subhatav@gmail.com"
 
 ENV SPRING_PROFILES_ACTIVE=production
-COPY --from=builder /todos-app/target/todos-app-1.0.0-SNAPSHOT.jar app.jar
+COPY --from=builder /todos-app/target/todos-app-1.1.0-SNAPSHOT.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "/app.jar"]

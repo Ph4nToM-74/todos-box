@@ -93,6 +93,6 @@ Go to this *URL* to **use** the *application*:
 
 <hr/>
 
-**Thank** you for *using* it! :D
+**Thank** you for *using* it!
 
 <hr/>
