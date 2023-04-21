@@ -1,4 +1,4 @@
-package com.ph4ntom.of.codes.todosapp.entity;
+package com.ph4ntom.of.codes.todosapp.model;
 
 import jakarta.persistence.*;
 import lombok.*;
